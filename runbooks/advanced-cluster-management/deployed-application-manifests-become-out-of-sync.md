@@ -8,6 +8,9 @@
 * We can manually clean up any invalid artifacts by editing/deleting the SubscriptionReports CR in the managed cluster namespace on the ACM Hub.
 * If there are multiple applications subscribed to the managed cluster, you can edit and manually remove any invalide entries in the SubscriptionReport CR.
 
+Edit/Delete CR
 ```bash
 oc edit subscriptionreports.apps.open-cluster-management.io dev-aks-central -n dev-aks-central
+# or
+oc delete subscriptionreports.apps.open-cluster-management.io dev-aks-central -n dev-aks-central
 ```

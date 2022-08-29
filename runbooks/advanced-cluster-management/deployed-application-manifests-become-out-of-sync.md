@@ -1,7 +1,13 @@
-# Cleaning up deployed manifests that become out of sync with the hub cluster
+# Application Topology View Becomes Out of Sync
 
-# Problem
+* In some cases, the application topology view of deploy application does not reflect the current status of applications on remote managed clusters.
+* This can happen when the managed cluster is deleted outside the context of ACM, and the klusterlet does not have a chance to report that its state has changed.
 
-* after upgrading between releases, a deployed application can become out of sync.
-* The manifestwork for the managed cluster no longer exists on the hub side.
-* However, the managed clusters still have artifacts of the application deployed.
+# Resolution
+
+* We can manually clean up any invalid artifacts by editing/deleting the SubscriptionReports CR in the managed cluster namespace on the ACM Hub.
+* If there are multiple applications subscribed to the managed cluster, you can edit and manually remove any invalide entries in the SubscriptionReport CR.
+
+```bash
+oc edit subscriptionreports.apps.open-cluster-management.io dev-aks-central -n dev-aks-central
+```
